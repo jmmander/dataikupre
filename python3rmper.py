@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3.6
 # Description: This script will check for Dataiku 5.1 X pre-requisites
 # Author: Jacqueline Mander with guidance from Alex Kaos
 # Date: 10/7/19
@@ -11,7 +11,6 @@ import subprocess
 import re
 import shlex
 import operator
-import datetime
 replist = []
 
 
@@ -40,14 +39,10 @@ def bird():
 def intro():
     return "**************************************************\n          Dataiku pre-installation report\n**************************************************\n\n   Making sure all your eggs are in the nest...         \n"
 
-r_prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
 
-hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*", "java-1.8*"]
-
-dss_prereqs = ["java-1.8*","acl","expat","git","zip","unzip","nginx","python27","freetype","libgfortran","libgomp","python27-devel","freetype","libgfortran","libgomp","python-devel","bzip2","mesa-libGL","libSM","libXrender","libgomp","alsa-lib","R-core-devel","libicu-devel","libcurl-devel","openssl-devel","libxml2-devel","zeromq-devel","libssh2-devel","openldap-devel"]
-
-prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
-
+prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
+#hadoop pres = ["hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*", "java-1.8*"]
+#prereqs = ["java-1.8*"]
 
 
 
@@ -146,8 +141,8 @@ def selinux():
     process = subprocess.Popen(['getenforce'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     word = "Enabled"
-    #byteword = word.encode(encoding='UTF-8')
-    if word in stdout:
+    byteword = word.encode(encoding='UTF-8')
+    if byteword in stdout:
         nokay = "Uh oh! Your nest has SELinux enabled. "
         fix = "To disable it please edit /etc/selinux/config accordingly and restart the sever"
         replist.append(nokay)
@@ -233,8 +228,8 @@ def locale():
     process = subprocess.Popen(['locale'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     word = "en_US.UTF-8"
-    #byteword = word.encode(encoding='UTF-8')
-    if word in stdout:
+    byteword = word.encode(encoding='UTF-8')
+    if byteword in stdout:
         okay = "Nice work! You are using en_US.utf8"
         replist.append(okay)
         print(colour('green',okay))
@@ -257,16 +252,13 @@ def nester():
     return nestnum
 
 
+
+
 def report(replist):
-    now = datetime.datetime.now()
-    dt = now.strftime("%Y-%m-%d-%H:%M")
-    name = 'dku-avail-report-' + dt + '.txt'
-    with open(name, 'w+') as report:
+    with open('dku-report.txt', 'w+') as report:
         for item in replist:
             report.write("%s\n" % item)
         report.closed
-    print(name + ' has been created\n')
-
     #with open('dku-report.txt', 'r') as reading:
      #   print(reading.read())
       #  reading.closed

@@ -34,11 +34,14 @@ class bcolors:
 
 
 
-#R pres
-prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
+r_prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
 
-#hadoop prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*", "java-1.8*"]
-#other prereqs = ["java-1.8*"]
+hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*", "java-1.8*"]
+
+dss_prereqs = ["java-1.8*","acl","expat","git","zip","unzip","nginx","python27","freetype","libgfortran","libgomp","python27-devel","freetype","libgfortran","libgomp","python-devel","bzip2","mesa-libGL","libSM","libXrender","libgomp","alsa-lib","R-core-devel","libicu-devel","libcurl-devel","openssl-devel","libxml2-devel","zeromq-devel","libssh2-devel","openldap-devel"]
+
+prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
+print(prereqs)
 
 
 
@@ -65,13 +68,23 @@ def avail(prereqs):
     process = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     for pkg in prereqs:
-        if pkg in stdout:
-            installed(pkg)
+        if "*" in pkg:
+            actpkg = pkg[:-1]
+            if actpkg in stdout:
+                installed(actpkg)
+            else:
+                nono = (pkg + " is not available")
+                replist.append(nono)
+                notin.append(pkg)
+                print(colour("red", nono))
         else:
-            nono = (pkg + " is not available")
-            replist.append(nono)
-            notin.append(pkg)
-            print(colour("red", nono))
+            if pkg in stdout:
+                installed(pkg)
+            else:
+                nono = (pkg + " is not available")
+                replist.append(nono)
+                notin.append(pkg)
+                print(colour("red", nono))
 
 
 def installed(pkg):
