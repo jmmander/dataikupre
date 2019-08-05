@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
-# Author: Primary developer - Jacqueline Mander Primary designer - Alex Kaos
+# Primary developer: Jacqueline Mander
+# Primary designer: Alex Kaos
 # Date: 5/8/19
-# Version: 2.7
+# Version: 2.8
 
 
 #import rpm
@@ -20,9 +21,10 @@ from sys import stdout
 
 replist = []
 wc_dic = {}
+
+
+#number of CPU cores required
 cpucore = 4
-
-
 
 # required version of python, numbers only
 pyver = "2.7"
@@ -249,7 +251,22 @@ def os():
     result = re.search('PRETTY_NAME="(.*?)"', stroutput)
     osname = (result.group(1))
     text = ("* " + osname + " is being used")
-    sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x\n\tCentOS, version 7.3 and later 7.x\n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS\n\tDebian, versions 8.x and 9.x\n\tOracle Linux, version 7.3 and later 7.x\n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)\n\tAmazon Linux 2 (experimental support)\n\tSuSE 12 SP2 and later"
+    if "Red Hat" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x"
+    elif "Centos" in osname:
+        sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x"
+    elif "Ubuntu" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
+    elif "Debian" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
+    elif "Orcale" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x"
+    elif "Amazon Linux 2" in osname:
+        sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
+    elif "Amazon Linux" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
+    elif "SuSE" in osname:
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only:\n\tSuSE 12 SP2 and later"
     print(text)
     print(sup + "\n\n")
 
