@@ -1,15 +1,12 @@
 #!/usr/bin/python
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
-# Author: Primary developer - Jacqueline Mander Primary designer - Alex Kaos
-# Date: 5/8/19
-# Version: 2.7
+# Author: Jacqueline Mander with guidance from Alex Kaos
+# Date: 10/7/19
+# Version: 2
 
 
-#import rpm
+import rpm
 import os
-from os import geteuid
-from os import system
-from os import name
 import subprocess
 import re
 import shlex
@@ -19,30 +16,25 @@ import platform
 from sys import stdout
 
 replist = []
-wc_dic = {}
-cpucore = 4
-
-
+av = []
+ins = []
+notin = []
 
 # required version of python, numbers only
 pyver = "2.7"
 
-r_prereqs = ["zeromq-devel", "libssh2-devel", "openldap-devel", "R-core-devel", "libicu-devel", "libcurl-devel", "openssl-devel", "libxml2-devel", "pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay",
-             "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools", "zeromq-devel", "libssh2-devel", "openldap-devel"]
+r_prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay",
+             "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
 
 hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive",
                   "hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*"]
 
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "freetype", "libgfortran", "libgomp",
-               "freetype", "libgomp", "python-devel"]
+               "freetype", "libgfortran", "libgomp", "python-devel", "bzip2", "mesa-libGL", "libSM", "libXrender",
+               "libgomp", "alsa-lib", "R-core-devel", "libicu-devel", "libcurl-devel", "openssl-devel", "libxml2-devel",
+               "zeromq-devel", "libssh2-devel", "openldap-devel"]
 
-conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "libgomp", "alsa-lib"]
-
-#list of prereqresite packages
-prereqs = dss_prereqs
-
-
-
+prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
 
 # creates text formatting classes
 class bcolors:
@@ -56,8 +48,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-
-# applies text formatting
+#applies text formatting
 def colour(colour, text):
     if colour == 'red':
         return "* " + (bcolors.FAIL + text + bcolors.ENDC)
@@ -72,34 +63,26 @@ def colour(colour, text):
     elif colour == "yellow":
         return "* " + (bcolors.WARNING + text + bcolors.ENDC)
 
-
-# checks for root user privileges
+#checks for root user privileges
 def sudo():
-    if geteuid() != 0:
+    if os.geteuid() != 0:
         exit("Uh oh! You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'.")
 
-
-# returns dataikju bird logo
+#returns dataikju bird logo
 def bird():
     return "\n\n\t@@@@@@@@@@@@" + bcolors.CYAN + "(((((((((((" + bcolors.ENDC + "@@@@@@@@@@@@\n\t@@@@@@@@" + bcolors.CYAN + "(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@\n\t@@@@@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@@@\n\t@@@" + bcolors.CYAN + "(((((((((((((((((((((((((((((" + bcolors.ENDC + "@@@\n\t@@" + bcolors.CYAN + "((((((((((((((((((((" + bcolors.ENDC + "@@@@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@@\n\t@" + bcolors.CYAN + "((((((((((((((((((((" + bcolors.ENDC + "@@@@@" + bcolors.CYAN + "((((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "\n\t(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((((" + bcolors.ENDC + "@@@@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((" + bcolors.ENDC + "@@@@@@@@@@@" + bcolors.CYAN + "((((((((((\n\t(((((((((((((" + bcolors.ENDC + "@@@@@@@@@" + bcolors.CYAN + "(((((((((((((\n\t(((((((((((" + bcolors.ENDC + "@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@@@@@@@@@" + bcolors.CYAN + "(((((((\n\t" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((((((((((((((((" + bcolors.ENDC + "@\n\t@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "((((((((((((((((((((((((" + bcolors.ENDC + "@@\n\t@@@" + bcolors.CYAN + "(((" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@\n\t@@@@@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@@@\n\t@@@@@@@@" + bcolors.CYAN + "(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@\n\t"
 
-
-# introduction
+#introduction
 def intro():
-    return "**************************************************\n       Dataiku DSS pre-installation report\n**************************************************\n\n   " \
+    return "**************************************************\n       Dataiku DSS pre-installation report\n**************************************************\n\n   Checking all your eggs are in the nest...         \n  ------------------------------------------- \n"
 
-def eggs():
-    return "   Checking all your eggs are in the nest...         \n  ------------------------------------------- \n"
-
-
-# checks which packages are avaiable
+#checks which packages are avaiable
 def avail(prereqs):
-    av = []
     p1 = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE)
     output = p1.communicate()[0]
     for pkg in prereqs:
-        if "*" in pkg:
-            wildcard(pkg, output, "ava", wc_dic)
+        if "*" in prereqs:
+            wildcard(pkg, output)
         else:
             pattern = '(?<!\\S)' + pkg + '[^a-zA-Z]'
             stringpat = str(pattern)
@@ -108,18 +91,28 @@ def avail(prereqs):
                 av.append(pkg)
             else:
                 continue
-    return av
+
+
+def wildcard(pkg, output):
+    name = pkg[:-1]
+    pattern = '(?<!\\S)' + name + '\w+'
+    stringpat = str(pattern)
+    result = re.findall(stringpat, output)
+    if result:
+        av.append(pkg)
+    else:
+        pass
 
 
 
-# checks which packages are installed
+
+#checks which packages are installed
 def installed(prereqs):
-    ins = []
     p1 = subprocess.Popen(['yum', 'list', 'installed'], stdout=subprocess.PIPE)
     output = p1.communicate()[0]
     for pkg in prereqs:
-        if "*" in pkg:
-            wildcard(pkg, output, "inst", wc_dic)
+        if "*" in prereqs:
+            wildcard(pkg, output)
         else:
             pattern = '(?<!\\S)' + pkg + '[^a-zA-Z]'
             stringpat = str(pattern)
@@ -128,86 +121,33 @@ def installed(prereqs):
                 ins.append(pkg)
             else:
                 continue
-    return ins
-
-#returns dictionary of  wildcard results
-def wildcard(pkg, output, inav, wc_dic):
-    pname = pkg[:-1]
-    pattern = '(?<!\\S)' + pname + '\w+'
-    stringpat = str(pattern)
-    result = re.findall(stringpat, output)
-    #retirns twice, need to check if in ins
-    if result:
-        if inav == "inst":
-            for pack in result:
-                if pack not in wc_dic:
-                    wc_dic[pack] = "installed"
-        else:
-            for pack in result:
-                if pack not in wc_dic:
-                    wc_dic[pack] = "available"
-    else:
-        if pkg not in wc_dic:
-            wc_dic[pkg] = "not-available"
-    return wc_dic
 
 
-
-
-
-
-
-# returns all missing packages (not available or installed)
+#returns all missing packages (not available or installed)
 def missing(prereqs, av, ins):
-    nowc = []
     combo = av + ins
     unique = set(combo)
-    for pkg in prereqs:
-        if "*" not in pkg:
-            nowc.append(pkg)
-    notin = set(nowc) - unique
+    notin = set(prereqs) - unique
     return notin
 
 
-# prints package check results
-def echo(notin, ins, av, wc_dic):
-    avanotin = []
-    for pkg in av:
-        if pkg not in ins:
-            avanotin.append(pkg)
-    for pkg in ins:
-        yayay = (pkg + " is installed")
-        replist.append(yayay)
-        print(colour("green", yayay))
-    for pack in wc_dic:
-        if wc_dic[pack] == "installed":
-            yayay = (pack + " is installed")
+#prints package check results
+def echo(prereqs):
+    for pkg in prereqs:
+        if pkg in ins:
+            yayay = (pkg + " is installed")
             replist.append(yayay)
             print(colour("green", yayay))
-    for pkg in avanotin:
-        soso = (pkg + " is available but not installed")
-        print(colour("blue", soso))
-    for pack in wc_dic:
-        if wc_dic[pack] == "available":
-            soso = (pack + " is available but not installed")
+        elif pkg in av:
+            soso = (pkg + " is available but not installed")
             replist.append(soso)
             print(colour("blue", soso))
-    for pkg in notin:
-        nono = (pkg + " is not available")
-        replist.append(nono)
-        print(colour("red", nono))
-    for pack in wc_dic:
-        if wc_dic[pack] == "not-available":
-            nono = (pack + " is not available")
+        else:
+            nono = (pkg + " is not available")
             replist.append(nono)
             print(colour("red", nono))
 
-
-
-
-
-
-# returns results of just the packages
+#returns results of just the packages
 # def result(nomissing):
 #     if nomissing == str(len(prereqs)):
 #         return ("Uh oh! Looks like you have no eggs in your nest :(")
@@ -222,8 +162,7 @@ def echo(notin, ins, av, wc_dic):
 def nest():
     return "\n\n    Checking the integrity of your nest...\n   ---------------------------------------- \n"
 
-
-# checks python version
+#checks python version
 def python():
     python_version = platform.python_version()
     if pyver in python_version:
@@ -239,35 +178,12 @@ def python():
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
 
-
-
-#checks is OS is supported as per DSS documentation
-def os():
-    p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout = p1.communicate()
-    stroutput = str(stdout)
-    result = re.search('PRETTY_NAME="(.*?)"', stroutput)
-    osname = (result.group(1))
-    text = ("* " + osname + " is being used")
-    sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x\n\tCentOS, version 7.3 and later 7.x\n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS\n\tDebian, versions 8.x and 9.x\n\tOracle Linux, version 7.3 and later 7.x\n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)\n\tAmazon Linux 2 (experimental support)\n\tSuSE 12 SP2 and later"
-    print(text)
-    print(sup + "\n\n")
-
-
-
-
-
-
-
-
-
-
-# checks if system can connect to r repo
+#checks if system can connect to r repo
 def ping():
     hostname = "cran.cnr.berkeley.edu"
-    response = system("ping -c 1 -w2 " + hostname + " > /dev/null 2>&1")
+    response = os.system("ping -c 1 -w2 " + hostname + " > /dev/null 2>&1")
     if response == 0:
-        text = 'Nice work! You can connect to ' + hostname
+        text =  'Nice work! You can connect to ' + hostname
         replist.append(text)
         print(colour('green', text))
         return (1, 1)
@@ -276,7 +192,6 @@ def ping():
         replist.append(text)
         print(colour('red', text))
         return (0, 1)
-
 
 # checks if system has Security-Enhanced Linux (SELinux) in enforcing mode
 def selinux():
@@ -360,7 +275,7 @@ def userprocesses():
 
 # checks if en_US.utf8 locale is installed.
 def locale():
-    process = subprocess.Popen(['localectl'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(['locale'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     word = "en_US.UTF-8"
     # byteword = word.encode(encoding='UTF-8')
@@ -375,26 +290,7 @@ def locale():
         print(colour('red', nokay))
         return (0, 1)
 
-#checks number of CPU cores
-def cpucores():
-    process = subprocess.Popen(['nproc'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-    nocores = str(stdout).rstrip()
-    nocoresnum = int(nocores)
-    if nocoresnum < 4:
-        nokay = "Uh oh! You only have " + str(nocoresnum) + " CPU core(s)"
-        replist.append(nokay)
-        print(colour('red', nokay))
-        return (0, 1)
-    else:
-        okay = "Nice work! You have " + str(nocoresnum) + " CPU cores"
-        replist.append(okay)
-        print(colour('green', okay))
-        return (1, 1)
-
-
-
-# calls all system related checks and returns tuple
+#calls all system related checks and returns tuple
 def nester():
     f = python()
     a = selinux()
@@ -403,29 +299,27 @@ def nester():
     d = userprocesses()
     e = locale()
     g = ping()
-    i = cpucores()
-    total = tuple(map(sum, zip(a, b, c, d, e, f, g, i)))
+    total = tuple(map(sum, zip(a, b, c, d, e, f,g)))
     nestnum = total[1] - total[0]
     return nestnum
 
-
-# uses tuple from nester to provide results
+#uses tuple from nester to provide results
 def ending(nomissing, nestnum):
     if nomissing == 0 and nestnum == 0:
         text = "Congratuations! You have all the necessary requirements. Dataiku DSS is ready to take flight!"
-        return "\n" + colour("bold", text) + "\n\n\n" + fly()
+        return "\n" + colour("bold",text) + "\n\n\n" + fly()
     elif nomissing == 0 and nestnum != 0:
         text = "You have all your eggs but your nest isn't quite ready! Please make the necessary changes so Dataiku DSS can take flight"
-        return "\n" + colour("bold", text) + "\n\n\n" + almost()
+        return "\n" + colour("bold",text) + "\n\n\n" + almost()
     elif nomissing > 0 and nestnum == 0:
         text = "Your nest is sound but you're missing an egg or two! Please download the missing packages so Dataiku DSS can take flight"
-        return "\n" + colour("bold", text) + "\n\n\n" + almost()
+        return "\n" + colour("bold",text) + "\n\n\n" + almost()
     else:
         text = "Oh dear! You're missing some eggs and your nest is not yet sound. Please download the missing packages and make the necessary changes so Dataiku DSS can take flight"
-        return "\n" + colour("bold", text) + "\n\n\n" + almost()
+        return "\n" + colour("bold",text) + "\n\n\n" + almost()
 
 
-# creates new file with results
+#creates new file with results
 def report(replist):
     now = datetime.datetime.now()
     dt = now.strftime("%Y-%m-%d-%H:%M")
@@ -436,31 +330,25 @@ def report(replist):
         report.closed
     print(name + ' has been created\n')
 
-
-# bird trying to fly
+#bird trying to fly
 def almost():
-    return (
-        "      .---.        .-----------\n     /     \\  __  /    ------\n    / /     \\(  )/    -----\n   //////   \' \\/ `   ---\n  //// / // :    : ---\n // /   /  `    \'--\n//          //..\\\\\n       ====UU====UU====\n           \'//||\\\\`\n             \'\'``\n")
+    return("      .---.        .-----------\n     /     \\  __  /    ------\n    / /     \\(  )/    -----\n   //////   \' \\/ `   ---\n  //// / // :    : ---\n // /   /  `    \'--\n//          //..\\\\\n       ====UU====UU====\n           \'//||\\\\`\n             \'\'``\n")
 
-
-# bird flying
+#bird flying
 def fly():
-    return (
-        "                                 .ze$$e.\n              .ed$$$eee..      .$$$$$$$P\"\"\"\n           z$$$$$$$$$$$$$$$$$ee$$$$$$\"\n        .d$$$$$$$$$$$$$$$$$$$$$$$$$\"\n      .$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$e..\n    .$$****\"\"\"\"***$$$$$$$$$$$$$$$$$$$$$$$$$$$be.\n                     \"\"**$$$$$$$$$$$$$$$$$$$$$$$L\n                       z$$$$$$$$$$$$$$$$$$$$$$$$$\n                     .$$$$$$$$P**$$$$$$$$$$$$$$$$\n                    d$$$$$$$\"              4$$$$$\n                  z$$$$$$$$$                $$$P\"\n                 d$$$$$$$$$F                $P\"\n                 $$$$$$$$$$F\n                  *$$$$$$$$\"\n                    \"***\"\"\n")
+    return("                                 .ze$$e.\n              .ed$$$eee..      .$$$$$$$P\"\"\"\n           z$$$$$$$$$$$$$$$$$ee$$$$$$\"\n        .d$$$$$$$$$$$$$$$$$$$$$$$$$\"\n      .$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$e..\n    .$$****\"\"\"\"***$$$$$$$$$$$$$$$$$$$$$$$$$$$be.\n                     \"\"**$$$$$$$$$$$$$$$$$$$$$$$L\n                       z$$$$$$$$$$$$$$$$$$$$$$$$$\n                     .$$$$$$$$P**$$$$$$$$$$$$$$$$\n                    d$$$$$$$\"              4$$$$$\n                  z$$$$$$$$$                $$$P\"\n                 d$$$$$$$$$F                $P\"\n                 $$$$$$$$$$F\n                  *$$$$$$$$\"\n                    \"***\"\"\n")
+
 
 
 sudo()
 print(bird())
 print(intro())
-os()
-print(eggs())
-instpkgs = installed(prereqs)
-availpkgs = avail(prereqs)
-notin = missing(prereqs, availpkgs, instpkgs)
-echo(notin, instpkgs, availpkgs, wc_dic)
-# result(len(missing(prereqs, av, ins)))
+avail(prereqs)
+installed(prereqs)
+echo(prereqs)
+#result(len(missing(prereqs, av, ins)))
 print(nest())
-print("\n" + ending(len(notin), nester()) + "\n\n")
+print("\n" + ending(len(missing(prereqs, av, ins)), nester()) + "\n\n")
 report(replist)
 
 

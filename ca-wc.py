@@ -87,6 +87,7 @@ def avail(prereqs):
     av = []
     p1 = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE)
     output = p1.communicate()[0]
+
     for pkg in prereqs:
         if "*" in pkg:
             wildcard(pkg, output, "ava", wc_dic)
@@ -95,6 +96,7 @@ def avail(prereqs):
             stringpat = str(pattern)
             result = re.findall(stringpat, output)
             if result:
+                print(result)
                 av.append(pkg)
             else:
                 continue
@@ -116,6 +118,7 @@ def installed(prereqs):
             result = re.findall(stringpat, output)
             if result:
                 ins.append(pkg)
+                print(result)
             else:
                 continue
     return ins
@@ -393,12 +396,12 @@ def fly():
 sudo()
 print(bird())
 print(intro())
-installed(prereqs)
-avail(prereqs)
-echo(prereqs, avail(prereqs), installed(prereqs), wc_dic)
+inst = installed(prereqs)
+ava = avail(prereqs)
+echo(prereqs, ava, inst, wc_dic)
 # result(len(missing(prereqs, av, ins)))
 print(nest())
-print("\n" + ending(len(missing(prereqs, avail(prereqs), installed(prereqs))), nester()) + "\n\n")
+print("\n" + ending(len(missing(prereqs, ava, inst)), nester()) + "\n\n")
 report(replist)
 
 

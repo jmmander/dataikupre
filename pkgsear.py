@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 COLOR = {
     'blue': '\033[94m',
     'default': '\033[99m',
@@ -17,3 +19,4 @@ def print_with_color(message, color='red'):
 
 for col in COLOR:
     print_with_color('hello colorful world!', col)
+    print(col)

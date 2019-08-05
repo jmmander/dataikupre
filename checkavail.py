@@ -12,8 +12,24 @@ import re
 import shlex
 import operator
 import datetime
+import platform
+from sys import stdout
 replist = []
+av = []
+ins = []
 notin = []
+pyver = "2.7"
+
+
+r_prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
+
+hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*"]
+
+dss_prereqs = ["java-1.8","acl","expat","git","zip","unzip","nginx","freetype","libgfortran","libgomp","freetype","libgfortran","libgomp","python-devel","bzip2","mesa-libGL","libSM","libXrender","libgomp","alsa-lib","R-core-devel","libicu-devel","libcurl-devel","openssl-devel","libxml2-devel","zeromq-devel","libssh2-devel","openldap-devel"]
+
+prereqs = hadoop_prereqs
+
+
 
 
 
@@ -34,14 +50,7 @@ class bcolors:
 
 
 
-r_prereqs = ["pkg", "httr", "RJSONIO", "dplyr", "sparklyr", "ggplot2", "tidyr", "repr", "evaluate", "IRdisplay", "pbdZMQ", "crayon", "jsonlite", "uuid", "digest", "gtools"]
 
-hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "spark-R", "spark-datanucleus", "hive","hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*", "java-1.8*"]
-
-dss_prereqs = ["java-1.8*","acl","expat","git","zip","unzip","nginx","python27","freetype","libgfortran","libgomp","python27-devel","freetype","libgfortran","libgomp","python-devel","bzip2","mesa-libGL","libSM","libXrender","libgomp","alsa-lib","R-core-devel","libicu-devel","libcurl-devel","openssl-devel","libxml2-devel","zeromq-devel","libssh2-devel","openldap-devel"]
-
-prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
-print(prereqs)
 
 
 
@@ -62,42 +71,91 @@ def bird():
     return "\n\n\t@@@@@@@@@@@@" + bcolors.CYAN + "(((((((((((" + bcolors.ENDC + "@@@@@@@@@@@@\n\t@@@@@@@@" + bcolors.CYAN + "(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@\n\t@@@@@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@@@\n\t@@@" + bcolors.CYAN + "(((((((((((((((((((((((((((((" + bcolors.ENDC + "@@@\n\t@@" + bcolors.CYAN + "((((((((((((((((((((" + bcolors.ENDC + "@@@@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@@\n\t@" + bcolors.CYAN + "((((((((((((((((((((" + bcolors.ENDC + "@@@@@" + bcolors.CYAN + "((((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "\n\t(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((((" + bcolors.ENDC + "@@@@@@@@@@" + bcolors.CYAN + "(((((((((\n\t((((((((((((((" + bcolors.ENDC + "@@@@@@@@@@@" + bcolors.CYAN + "((((((((((\n\t(((((((((((((" + bcolors.ENDC + "@@@@@@@@@" + bcolors.CYAN + "(((((((((((((\n\t(((((((((((" + bcolors.ENDC + "@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@@@@@@@@@" + bcolors.CYAN + "(((((((\n\t" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((((((((((((((((" + bcolors.ENDC + "@\n\t@@" + bcolors.CYAN + "((((((" + bcolors.ENDC + "@" + bcolors.CYAN + "((((((((((((((((((((((((" + bcolors.ENDC + "@@\n\t@@@" + bcolors.CYAN + "(((" + bcolors.ENDC + "@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@\n\t@@@@@" + bcolors.CYAN + "(((((((((((((((((((((((((" + bcolors.ENDC + "@@@@@\n\t@@@@@@@@" + bcolors.CYAN + "(((((((((((((((((((" + bcolors.ENDC + "@@@@@@@@\n\t"
 
 def intro():
-    return "**************************************************\n          Dataiku DSS pre-installation report\n**************************************************\n\n   Checking all your eggs are in the nest...         \n"
+    return "**************************************************\n       Dataiku DSS pre-installation report\n**************************************************\n\n   Checking all your eggs are in the nest...         \n"
+
 
 def avail(prereqs):
-    process = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
     for pkg in prereqs:
-        if "*" in pkg:
-            actpkg = pkg[:-1]
-            if actpkg in stdout:
-                installed(actpkg)
-            else:
-                nono = (pkg + " is not available")
-                replist.append(nono)
-                notin.append(pkg)
-                print(colour("red", nono))
+        p1 = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE)
+        p2 = subprocess.Popen(["grep", '^'+pkg+'[^a-zA-Z]'], stdin=p1.stdout, stdout=subprocess.PIPE)
+        output = p2.communicate()[0]
+        #print("**Checking to see if " + pkg + " is available**")
+        if not output:
+            continue
         else:
-            if pkg in stdout:
-                installed(pkg)
-            else:
-                nono = (pkg + " is not available")
-                replist.append(nono)
-                notin.append(pkg)
-                print(colour("red", nono))
+            av.append(pkg)
+
+        #pattern = '\\b' + pkg + '[^a-zA-Z]'
+        #stringpat = str(pattern)
+        #result = re.match(stringpat, output)
+        #if result:
+        #    print(pkg + " found.")
+        #else:
+        #    print(pkg + " not found.")
+def installed(prereqs):
+    for pkg in prereqs:
+        p1 = subprocess.Popen(['yum', 'list', 'installed'], stdout=subprocess.PIPE)
+        p2 = subprocess.Popen(["grep", '^'+pkg+'[^a-zA-Z]'], stdin=p1.stdout, stdout=subprocess.PIPE)
+        output = p2.communicate()[0]
+        #print("**Checking to see if " + pkg + " is installed**")
+        if not output:
+            continue
+        else:
+            ins.append(pkg)
+    stdout.write("\n")
 
 
-def installed(pkg):
-    process = subprocess.Popen(['yum', 'list', 'installed'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-    if pkg in stdout:
-        yayay = (pkg + " is installed")
-        replist.append(yayay)
+
+def missing(prereqs,av, ins):
+    combo = av + ins
+    unique = set(combo)
+    notin = set(prereqs) - unique
+    return notin
+
+def python():
+    python_version = platform.python_version()
+    if pyver in python_version:
+        yayay = "You have python" + python_version + " installed"
         print(colour("green", yayay))
     else:
-        soso = (pkg + " is available but not installed")
-        replist.append(soso)
-        print(colour("blue", soso))
+        nono = "You have python" + python_version + " installed"
+        print(colour("red", nono))
+
+
+    #process = subprocess.Popen(['yum', 'list', 'available', ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #stdout, stderr = process.communicate()
+    #for pkg in prereqs:
+       # if pkg in stdout:
+       #     installed(pkg)
+        #else:
+         #   nono = (pkg + " is not available")
+         #   replist.append(nono)
+         #   notin.append(pkg)
+          #  print(colour("red", nono))
+
+
+
+    #process = subprocess.Popen(['yum', 'list', 'installed'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #stdout, stderr = process.communicate()
+    #if pkg in stdout:
+      #  yayay = (pkg + " is installed")
+       # replist.append(yayay)
+       # print(colour("green", yayay))
+    #else:
+      #  soso = (pkg + " is available but not installed")
+      #  replist.append(soso)
+       # print(colour("blue", soso))
+def echo(prereqs):
+    for pkg in prereqs:
+        if pkg in ins:
+            yayay = (pkg + " is installed")
+            print(colour("green", yayay))
+        elif pkg in av:
+            soso = (pkg + " is available but not installed")
+            print(colour("blue", soso))
+        else:
+            nono = (pkg + " is not available")
+            print(colour("red", nono))
 
 def result(nomissing):
     if nomissing == str(len(prereqs)):
@@ -256,10 +314,13 @@ def report(replist):
 print(bird())
 print(intro().upper())
 avail(prereqs)
-result(len(notin))
+installed(prereqs)
+echo(prereqs)
+python()
+result(len(missing(prereqs,av, ins)))
 print(nest().upper())
-print("\n" + ending(len(notin), nester()) +"\n\n")
-report(replist) 
+print("\n" + ending(len(missing(prereqs,av, ins)), nester()) +"\n\n")
+report(replist)
 
 
 
