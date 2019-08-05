@@ -231,14 +231,14 @@ def nest():
 def python():
     python_version = platform.python_version()
     if pyver in python_version:
-        okay = "Nice work! You have python" + python_version
+        okay = "Nice work! You have python " + python_version
         replist.append(okay)
         print(colour('green', okay))
         return (1, 1)
     else:
         nokay = "Uh oh! You have " + python_version
         replist.append(nokay)
-        fix = "DSS only works with python" + pyver
+        fix = "DSS only works with python " + pyver
         replist.append(nokay)
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
@@ -353,7 +353,7 @@ def openfiles():
         return (1, 1)
     else:
         nokay = "Uh oh! You can only have " + str(hardlimit) + " files open. "
-        fix = colour('bold', "Please increase it to ulimit or more")
+        fix = colour('bold', "Please increase it to " + str(ulimit) + " or more")
         replist.append(nokay)
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
@@ -373,7 +373,7 @@ def userprocesses():
         return (1, 1)
     else:
         nokay = "Uh oh! You can only have " + str(hardlimit) + " processes running. "
-        fix = colour('bold', "Please increase it to ulimit or more")
+        fix = colour('bold', "Please increase it to " + str(ulimit) + " or more")
         replist.append(nokay)
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
