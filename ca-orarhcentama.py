@@ -255,7 +255,7 @@ def os():
     text = (osname + " is being used")
     replist.append((text))
     if "Red Hat" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT reccommended for newS installations."
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT recommended for new installations."
     elif "Centos" in osname:
         sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
     elif "Ubuntu" in osname:
