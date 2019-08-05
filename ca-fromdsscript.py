@@ -20,6 +20,7 @@ from sys import stdout
 
 replist = []
 wc_dic = {}
+cpucore = 4
 
 
 
@@ -35,15 +36,10 @@ hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "freetype", "libgfortran", "libgomp",
                "freetype", "libgfortran", "libgomp", "python-devel", "bzip2", "mesa-libGL", "libSM", "libXrender",
                "libgomp", "alsa-lib", "R-core-devel", "libicu-devel", "libcurl-devel", "openssl-devel", "libxml2-devel",
-               "zeromq-devel", "libssh2-devel", "openldap-devel"]
+               "zeromq-devel", "libssh2-devel", "openldap-devel", "tomcat-*"]
 
 #list of prereqresite packages
 prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
-
-#list accepted OS types
-accpt_linux = {"Red Hat Enterprise Linux Server": "7.3 - 7.x", "CentOS": "7.3 - 7.x", "Ubuntu Server": "16.04 18.04 LTS", "Debian": "8.x and 9.x", "Oracle Linux": "7.3 - 7.x", "Amazon Linux": "2017.03 - 2018.03", "SuSE": ">=12 SP2"}
-experimental_linux = {"Amazon Linux 2": ""}
-notrec_linux = {"CentOS":"6.8 - 6.x", "Red Hat Enterprise Linux Server":"6.8 - 6.x", "Oracle Linux":"6.8 - 6.x"}
 
 
 
@@ -107,8 +103,6 @@ def avail(prereqs):
             result = re.findall(stringpat, output)
             if result:
                 av.append(pkg)
-                print("AVAIL")
-                print(av)
             else:
                 continue
     return av
@@ -129,8 +123,6 @@ def installed(prereqs):
             result = re.findall(stringpat, output)
             if result:
                 ins.append(pkg)
-                print("INSTALLED")
-                print(ins)
             else:
                 continue
     return ins
@@ -141,6 +133,7 @@ def wildcard(pkg, output, inav, wc_dic):
     pattern = '(?<!\\S)' + pname + '\w+'
     stringpat = str(pattern)
     result = re.findall(stringpat, output)
+    #retirns twice, need to check if in ins
     if result:
         if inav == "inst":
             for pack in result:
@@ -163,38 +156,45 @@ def wildcard(pkg, output, inav, wc_dic):
 
 # returns all missing packages (not available or installed)
 def missing(prereqs, av, ins):
+    nowc = []
     combo = av + ins
     unique = set(combo)
-    notin = set(prereqs) - unique
+    for pkg in prereqs:
+        if "*" not in pkg:
+            nowc.append(pkg)
+    notin = set(nowc) - unique
     return notin
 
 
 # prints package check results
-def echo(prereqs, ins, av, wc_dic):
-    for pkg in prereqs:
-        if "*" not in pkg:
-            if pkg in ins:
-                yayay = (pkg + " is installed")
-                replist.append(yayay)
-                print(colour("green", yayay))
-            elif pkg in av:
-                soso = (pkg + " is available but not installed")
-                replist.append(soso)
-                print(colour("blue", soso))
-            else:
-                nono = (pkg + " is not available")
-                replist.append(nono)
-                print(colour("red", nono))
+def echo(notin, ins, av, wc_dic):
+    avanotin = []
+    for pkg in av:
+        if pkg not in ins:
+            avanotin.append(pkg)
+    for pkg in ins:
+        yayay = (pkg + " is installed")
+        replist.append(yayay)
+        print(colour("green", yayay))
     for pack in wc_dic:
         if wc_dic[pack] == "installed":
             yayay = (pack + " is installed")
             replist.append(yayay)
             print(colour("green", yayay))
-        elif wc_dic[pack] == "available":
+    for pkg in avanotin:
+        soso = (pkg + " is available but not installed")
+        print(colour("blue", soso))
+    for pack in wc_dic:
+        if wc_dic[pack] == "available":
             soso = (pack + " is available but not installed")
             replist.append(soso)
             print(colour("blue", soso))
-        else:
+    for pkg in notin:
+        nono = (pkg + " is not available")
+        replist.append(nono)
+        print(colour("red", nono))
+    for pack in wc_dic:
+        if wc_dic[pack] == "not-available":
             nono = (pack + " is not available")
             replist.append(nono)
             print(colour("red", nono))
@@ -236,6 +236,12 @@ def python():
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
 
+#list accepted OS types
+accpt_linux = {"Red Hat Enterprise Linux Server": "7.3 - 7.x", "CentOS": "7.3 - 7.x", "Ubuntu Server": "16.04 18.04 LTS", "Debian": "8.x and 9.x", "Oracle Linux": "7.3 - 7.x", "Amazon Linux": "2017.03 - 2018.03", "SuSE": ">=12 SP2"}
+experimental_linux = {"Amazon Linux 2": ""}
+notrec_linux = {"CentOS":"6.8 - 6.x", "Red Hat Enterprise Linux Server":"6.8 - 6.x", "Oracle Linux":"6.8 - 6.x"}
+
+
 def os():
     p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout = p1.communicate()
@@ -243,8 +249,9 @@ def os():
     result = re.search('PRETTY_NAME="(.*?)"', stroutput)
     osname = (result.group(1))
     text = (osname + " is being used")
-    print("*" + " " + text)
-    replist.append(text)
+
+
+
 
 
 # checks if system can connect to r repo
@@ -360,6 +367,24 @@ def locale():
         print(colour('red', nokay))
         return (0, 1)
 
+#checks number of CPU cores
+def cpucores():
+    process = subprocess.Popen(['nproc'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    nocores = str(stdout).rstrip()
+    nocoresnum = int(nocores)
+    if nocoresnum < 4:
+        nokay = "Uh oh! You only have " + str(nocoresnum) + " CPU core(s)"
+        replist.append(nokay)
+        print(colour('red', nokay))
+        return (0, 1)
+    else:
+        okay = "Nice work! You have " + str(nocoresnum) + " CPU cores"
+        replist.append(okay)
+        print(colour('green', okay))
+        return (1, 1)
+
+
 
 # calls all system related checks and returns tuple
 def nester():
@@ -371,7 +396,8 @@ def nester():
     e = locale()
     g = ping()
     h = os()
-    total = tuple(map(sum, zip(a, b, c, d, e, f, g)))
+    i = cpucores()
+    total = tuple(map(sum, zip(a, b, c, d, e, f, g, i)))
     nestnum = total[1] - total[0]
     return nestnum
 
@@ -421,10 +447,12 @@ print(bird())
 print(intro())
 instpkgs = installed(prereqs)
 availpkgs = avail(prereqs)
-echo(prereqs, avail(prereqs), installed(prereqs), wc_dic)
+notin = missing(prereqs, availpkgs, instpkgs)
+echo(notin, instpkgs, availpkgs, wc_dic)
 # result(len(missing(prereqs, av, ins)))
 print(nest())
-print("\n" + ending(len(missing(prereqs, avail(prereqs), installed(prereqs))), nester()) + "\n\n")
+print("\n" + ending(len(notin), nester()) + "\n\n")
 report(replist)
+os()
 
 

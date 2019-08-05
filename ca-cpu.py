@@ -2,7 +2,7 @@
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
 # Author: Jacqueline Mander with guidance from Alex Kaos
 # Date: 1/8/19
-# Version: 2.6
+# Version: 3
 
 
 import rpm
@@ -41,9 +41,9 @@ dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "free
 prereqs = dss_prereqs + r_prereqs + hadoop_prereqs
 
 #list accepted OS types
-accpt_linux = {"Red Hat Enterprise Linux Server": "7.3 - 7.x", "CentOS": "7.3 - 7.x", "Ubuntu Server": "16.04 18.04 LTS", "Debian": "8.x and 9.x", "Oracle Linux": "7.3 - 7.x", "Amazon Linux": "2017.03 - 2018.03", "SuSE": ">=12 SP2"}
-experimental_linux = {"Amazon Linux 2": ""}
-notrec_linux = {"CentOS":"6.8 - 6.x", "Red Hat Enterprise Linux Server":"6.8 - 6.x", "Oracle Linux":"6.8 - 6.x"}
+# accpt_linux = {"Red Hat Enterprise Linux Server": xrange(7.3,7.999999), "CentOS": xrange(7.3,7.9999999), "Ubuntu Server": "16.04 18.04 LTS", "Debian": xrange(8.00, 9.99999), "Oracle Linux": xrange(7.3,7.999999), "Amazon Linux": xrange(2017.03,2018.03), "SuSE": ">=12 SP2"}
+# experi_linux = {"Amazon Linux 2": ""}
+# notrec_linux = {"CentOS":"6.8 - 6.x", "Red Hat Enterprise Linux Server":"6.8 - 6.x", "Oracle Linux":"6.8 - 6.x"}
 
 
 
@@ -107,8 +107,6 @@ def avail(prereqs):
             result = re.findall(stringpat, output)
             if result:
                 av.append(pkg)
-                print("AVAIL")
-                print(av)
             else:
                 continue
     return av
@@ -129,8 +127,6 @@ def installed(prereqs):
             result = re.findall(stringpat, output)
             if result:
                 ins.append(pkg)
-                print("INSTALLED")
-                print(ins)
             else:
                 continue
     return ins
@@ -236,15 +232,39 @@ def python():
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
 
-def os():
-    p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout = p1.communicate()
-    stroutput = str(stdout)
-    result = re.search('PRETTY_NAME="(.*?)"', stroutput)
-    osname = (result.group(1))
-    text = (osname + " is being used")
-    print("*" + " " + text)
-    replist.append(text)
+# def os():
+#     p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#     stdout = p1.communicate()
+#     stroutput = str(stdout)
+#     result = re.search('PRETTY_NAME="(.*?)"', stroutput)
+#     osname = (result.group(1))
+#     if osname is not "Amazon Linux 2":
+#         splitname = re.split('(\d+)', osname)
+#         print(splitname)
+#         if splitname[0] in accpt_linux:
+#             if splitname[1] in accpt_linux.get(splitname[0]):
+#                 text = "Nice work! You are using " + osname
+#                 print(colour('green', text))
+#                 replist.append(text)
+#
+#
+#     if osname in accpt_linux:
+#         text = "Nice work! You are using " + osname
+#         print(colour('green', text))
+#         replist.append(text)
+#     elif osname in experi_linux:
+#         text = "You are using " + osname + " . Please be aware we only offer experimental support at this stage"
+#         print(colour('blue', text))
+#         replist.append(text)
+#     elif osname in notrec_linux:
+#         text = "Uh oh! You are using " + osname + " . This is supported but NOT recommended for new installations"
+#         replist.append(text)
+#         print(colour('red', text))
+#     else:
+#         text = "You are using" + osname
+#         print("* " + text)
+#         replist.append(text)
+#
 
 
 # checks if system can connect to r repo
@@ -419,12 +439,12 @@ def fly():
 sudo()
 print(bird())
 print(intro())
-instpkgs = installed(prereqs)
-availpkgs = avail(prereqs)
-echo(prereqs, avail(prereqs), installed(prereqs), wc_dic)
+instpkg = installed(prereqs)
+avapkg = avail(prereqs)
+echo(prereqs, instpkg, avapkg, wc_dic)
 # result(len(missing(prereqs, av, ins)))
 print(nest())
-print("\n" + ending(len(missing(prereqs, avail(prereqs), installed(prereqs))), nester()) + "\n\n")
+print("\n" + ending(len(missing(prereqs, avapkg, instpkg)), nester()) + "\n\n")
 report(replist)
 
 
