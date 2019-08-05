@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11fa05c-d210-4597-baf7-33a1d726ae43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ca-ubude.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ca-orarhcentama.py" beforeDir="false" afterPath="$PROJECT_DIR$/ca-orarhcentama.py" afterDir="false" />
     </list>
@@ -16,8 +17,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="276" lean-forward="true" selection-start-line="276" selection-end-line="276" />
+            <state relative-caret-position="167">
+              <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ca-ubude.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -60,6 +70,8 @@
       <find>missing</find>
       <find>rpm</find>
       <find>os</find>
+      <find>python</find>
+      <find>libgo</find>
     </findStrings>
     <replaceStrings>
       <replace>\n\t</replace>
@@ -98,6 +110,7 @@
         <option value="$PROJECT_DIR$/ca-fromdsscript.py" />
         <option value="$PROJECT_DIR$/cs-ossucks.py" />
         <option value="$PROJECT_DIR$/ca-os1.py" />
+        <option value="$PROJECT_DIR$/ca-ubude.py" />
         <option value="$PROJECT_DIR$/ca-orarhcentama.py" />
       </list>
     </option>
@@ -337,7 +350,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565023010847</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fixed formatting in report">
+      <created>1565023134982</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1565023134982</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed ulimit thing">
+      <created>1565023417826</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1565023417826</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -389,7 +416,9 @@
     <MESSAGE value="refined the OS output" />
     <MESSAGE value="added os to report" />
     <MESSAGE value="added older versions to os function output" />
-    <option name="LAST_COMMIT_MESSAGE" value="added older versions to os function output" />
+    <MESSAGE value="fixed formatting in report" />
+    <MESSAGE value="fixed ulimit thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed ulimit thing" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mehdis.py">
@@ -565,10 +594,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ca-ubude.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="276" lean-forward="true" selection-start-line="276" selection-end-line="276" />
+        <state relative-caret-position="167">
+          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
         </state>
       </provider>
     </entry>

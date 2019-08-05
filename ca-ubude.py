@@ -38,7 +38,7 @@ hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "
                   "hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*"]
 
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "libgfortran", "libgomp",
-               "freetype", "libgomp", "python-devel"]
+               "freetype", "python-devel"]
 
 conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "libgomp", "alsa-lib"]
 
@@ -99,7 +99,7 @@ def eggs():
 # checks which packages are avaiable
 def avail(prereqs):
     av = []
-    p1 = subprocess.Popen(['yum', 'list', 'available'], stdout=subprocess.PIPE)
+    p1 = subprocess.Popen(['apt-cache', 'pkgnames'], stdout=subprocess.PIPE)
     output = p1.communicate()[0]
     for pkg in prereqs:
         if "*" in pkg:
@@ -119,7 +119,7 @@ def avail(prereqs):
 # checks which packages are installed
 def installed(prereqs):
     ins = []
-    p1 = subprocess.Popen(['yum', 'list', 'installed'], stdout=subprocess.PIPE)
+    p1 = subprocess.Popen(['dpkg-query', '-l'], stdout=subprocess.PIPE)
     output = p1.communicate()[0]
     for pkg in prereqs:
         if "*" in pkg:
@@ -300,6 +300,7 @@ def ping():
 
 
 # checks if system has Security-Enhanced Linux (SELinux) in enforcing mode
+# !!! must download selinux tools - check to see if installed first
 def selinux():
     process = subprocess.Popen(['getenforce'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
