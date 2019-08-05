@@ -40,7 +40,7 @@ hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "libgfortran", "libgomp",
                "freetype", "libgomp", "python-devel"]
 
-conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "libgomp", "alsa-lib"]
+conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "alsa-lib"]
 
 #list of prereqresite packages
 prereqs = dss_prereqs
