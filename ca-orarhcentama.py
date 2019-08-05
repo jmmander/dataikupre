@@ -26,7 +26,7 @@ wc_dic = {}
 #number of CPU cores required
 cpucore = 4
 
-ulimit = ulimit
+ulimit = 65536
 
 # required version of python, numbers only
 pyver = "2.7"
