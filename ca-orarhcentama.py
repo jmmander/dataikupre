@@ -26,6 +26,8 @@ wc_dic = {}
 #number of CPU cores required
 cpucore = 4
 
+ulimit = 65536
+
 # required version of python, numbers only
 pyver = "2.7"
 
@@ -343,14 +345,14 @@ def openfiles():
     num = str(stdout_val[0])
     lim = re.sub("[^0-9]", "", num)
     hardlimit = int(lim)
-    if hardlimit >= 65536:
+    if hardlimit >= ulimit:
         okay = "Nice work! Your nest can have " + str(hardlimit) + " files open."
         replist.append(okay)
         print(colour('green', okay))
         return (1, 1)
     else:
         nokay = "Uh oh! You can only have " + str(hardlimit) + " files open. "
-        fix = colour('bold', "Please increase it to 65536 or more")
+        fix = colour('bold', "Please increase it to ulimit or more")
         replist.append(nokay)
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
@@ -363,14 +365,14 @@ def userprocesses():
     num = str(stdout_val[0])
     lim = re.sub("[^0-9]", "", num)
     hardlimit = int(lim)
-    if hardlimit >= 65536:
+    if hardlimit >= ulimit:
         okay = "Nice work! Your nest can have " + str(hardlimit) + " processes running."
         replist.append(okay)
         print(colour('green', okay))
         return (1, 1)
     else:
         nokay = "Uh oh! You can only have " + str(hardlimit) + " processes running. "
-        fix = colour('bold', "Please increase it to 65536 or more")
+        fix = colour('bold', "Please increase it to ulimit or more")
         replist.append(nokay)
         print(colour('red', nokay) + colour('white', fix))
         return (0, 1)
