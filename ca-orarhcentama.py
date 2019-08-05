@@ -251,6 +251,7 @@ def os():
     result = re.search('PRETTY_NAME="(.*?)"', stroutput)
     osname = (result.group(1))
     text = ("* " + osname + " is being used")
+    replist.append((text))
     if "Red Hat" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x"
     elif "Centos" in osname:
