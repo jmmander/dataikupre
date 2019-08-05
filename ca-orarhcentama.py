@@ -252,7 +252,7 @@ def os():
     stroutput = str(stdout)
     result = re.search('PRETTY_NAME="(.*?)"', stroutput)
     osname = (result.group(1))
-    text = ("* " + osname + " is being used")
+    text = (osname + " is being used")
     replist.append((text))
     if "Red Hat" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT reccommended for newS installations."
@@ -270,7 +270,7 @@ def os():
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
     elif "SuSE" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
-    print(text)
+    print("* " + text)
     print(sup + "\n\n")
 
 

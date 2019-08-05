@@ -13,101 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-os.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="416" lean-forward="true" selection-start-line="416" selection-end-line="416" />
-              <folding>
-                <element signature="e#183#193#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-troubleshootinsandava.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1259">
-              <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-fromdsscript.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1955">
-              <caret line="253" selection-start-line="253" selection-end-line="253" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-os1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4117">
-              <caret line="451" column="13" lean-forward="true" selection-start-line="451" selection-start-column="13" selection-end-line="451" selection-end-column="13" />
-              <folding>
-                <element signature="e#194#203#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cs-ossucks.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-cpu.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="243" column="41" lean-forward="true" selection-start-line="241" selection-start-column="10" selection-end-line="247" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/regex.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/other.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pkgsearch.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="33" selection-start-line="8" selection-end-line="9" selection-end-column="43" />
-              <folding>
-                <element signature="e#19#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="488">
+              <caret line="276" lean-forward="true" selection-start-line="276" selection-end-line="276" />
             </state>
           </provider>
         </entry>
@@ -413,7 +323,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565021203111</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added os to report">
+      <created>1565022180349</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565022180349</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added older versions to os function output">
+      <created>1565023010847</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1565023010847</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -463,7 +387,9 @@
     <MESSAGE value="fixed false positives" />
     <MESSAGE value="added more functions" />
     <MESSAGE value="refined the OS output" />
-    <option name="LAST_COMMIT_MESSAGE" value="refined the OS output" />
+    <MESSAGE value="added os to report" />
+    <MESSAGE value="added older versions to os function output" />
+    <option name="LAST_COMMIT_MESSAGE" value="added older versions to os function output" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mehdis.py">
@@ -641,8 +567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+        <state relative-caret-position="488">
+          <caret line="276" lean-forward="true" selection-start-line="276" selection-end-line="276" />
         </state>
       </provider>
     </entry>
