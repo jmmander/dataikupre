@@ -255,23 +255,24 @@ def os():
     text = ("* " + osname + " is being used")
     replist.append((text))
     if "Red Hat" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x"
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT reccommended for newS installations."
     elif "Centos" in osname:
-        sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x"
+        sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
     elif "Ubuntu" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
     elif "Debian" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
     elif "Orcale" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x"
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n  Oracle Linux 6.8 and later 6.x are NOT reccommended for new installations."
     elif "Amazon Linux 2" in osname:
         sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
     elif "Amazon Linux" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
     elif "SuSE" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only:\n\tSuSE 12 SP2 and later"
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
     print(text)
     print(sup + "\n\n")
+
 
 
 
