@@ -1,11 +1,10 @@
 #!/usr/bin/python
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
-# Author: Primary developer - Jacqueline Mander Primary designer - Alex Kaos
-# Date: 5/8/19
+# Primary developer  Jacqueline Mander
+# Primary designer - Alex Kaos
+# Date: 8/5/19
 # Version: 2.7
 
-
-#import rpm
 import os
 from os import geteuid
 from os import system
