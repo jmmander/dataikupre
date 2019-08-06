@@ -6,7 +6,6 @@
 # Version: 2.9
 
 
-#import rpm
 import os
 from os import geteuid
 from os import system
