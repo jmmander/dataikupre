@@ -26,17 +26,11 @@ wc_dic = {}
 #number of CPU cores required
 cpucore = 4
 
+#hardlimit for system
 ulimit = 65536
 
 # required version of python, numbers only
 pyver = "2.7"
-
-
-
-#list of prereqresite packages
-
-
-
 
 
 # creates text formatting classes
@@ -83,8 +77,8 @@ def bird():
 def intro():
     return "**************************************************\n       Dataiku DSS pre-installation report\n**************************************************\n\n   " \
 
+#asks questions to user
 def questionasker(addon, list):
-
     while True:
         ans = raw_input("  Will you be using " + addon +"? (y/n): ")
         if ans.lower() == "y" or ans.lower() == "yes":

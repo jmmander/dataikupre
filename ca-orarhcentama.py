@@ -3,7 +3,7 @@
 # Primary developer: Jacqueline Mander
 # Primary designer: Alex Kaos
 # Date: 5/8/19
-# Version: 2.8
+# Version: 2.9
 
 
 #import rpm
@@ -91,6 +91,8 @@ def bird():
 # introduction
 def intro():
     return "**************************************************\n       Dataiku DSS pre-installation report\n**************************************************\n\n   " \
+
+
 
 def eggs():
     return "   Checking all your eggs are in the nest...         \n  ------------------------------------------- \n"
