@@ -80,13 +80,13 @@ def intro():
 #asks questions to user
 def questionasker(addon, list):
     while True:
-        ans = raw_input("  Will you be using " + addon +"? (y/n): ")
+        ans = raw_input(bcolors.OKGREEN + "  Will you be using " + addon +"? (y/n): " + bcolors.ENDC)
         if ans.lower() == "y" or ans.lower() == "yes":
             return addon
         elif ans.lower() == "n" or ans.lower() =="no":
             return None
         else:
-            print("  Oopsies! We didn't quite understand that. Please try again answering with either 'y' or 'n'\n")
+            print("  Oopsies! We didn't quite understand that. Please try again answering with either 'y' or 'n'")
 
 
 #builds custom list of prereq packages based off customers response
