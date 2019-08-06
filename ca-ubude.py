@@ -2,8 +2,8 @@
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
 # Primary developer: Jacqueline Mander
 # Primary designer: Alex Kaos
-# Date: 5/8/19
-# Version: 2.8
+# Date: 6/8/19
+# Version: 2.9
 
 
 #import rpm
@@ -40,7 +40,7 @@ hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "libgfortran", "libgomp",
                "freetype", "python-devel"]
 
-conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "libgomp", "alsa-lib"]
+conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "alsa-lib"]
 
 #list of prereqresite packages
 prereqs = dss_prereqs
@@ -119,7 +119,8 @@ def avail(prereqs):
 # checks which packages are installed
 def installed(prereqs):
     ins = []
-    p1 = subprocess.Popen(['dpkg-query', '-l'], stdout=subprocess.PIPE)
+    #p1 = subprocess.Popen(['dpkg-query', '-l'], stdout=subprocess.PIPE)
+    p1 = subprocess.Popen(['apt', 'list', '--installed'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = p1.communicate()[0]
     for pkg in prereqs:
         if "*" in pkg:
@@ -362,7 +363,7 @@ def openfiles():
 
 # Checks the hard limit on the maximum number of user processes for the Unix user account running DSS
 def userprocesses():
-    process = subprocess.Popen(["ulimit -Hu"], shell=True, stdout=subprocess.PIPE)
+    process = subprocess.Popen(["ulimit -u"], shell=True, stdout=subprocess.PIPE)
     stdout_val = process.communicate()
     num = str(stdout_val[0])
     lim = re.sub("[^0-9]", "", num)
