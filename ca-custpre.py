@@ -86,7 +86,7 @@ def questionasker(addon, list):
         elif ans.lower() == "n" or ans.lower() =="no":
             return None
         else:
-            print("    Oopsies! We didn't quite understand that. Please try again answering with either 'y' or 'n'")
+            print("  Oopsies! We didn't quite understand that. Please try again answering with either 'y' or 'n'\n")
 
 
 #builds custom list of prereq packages based off customers response
@@ -114,7 +114,7 @@ def prebuilder():
         prereqs = prereqs + r_prereqs
     if questionasker("Anaconda", conda_prereqs) == "Anaconda":
         prereqs = prereqs + conda_prereqs
-    print("\n Thank you! \n Now on with the show...\n\n")
+    print("\nThank you! Now on with the show...\n\n")
     return prereqs
 
 def eggs():
