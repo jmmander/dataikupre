@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11fa05c-d210-4597-baf7-33a1d726ae43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ca-ubude.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ca-custpre.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ca-orarhcentama.py" beforeDir="false" afterPath="$PROJECT_DIR$/ca-orarhcentama.py" afterDir="false" />
     </list>
@@ -14,11 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+            <state relative-caret-position="193">
+              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ca-custpre.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
             </state>
           </provider>
         </entry>
@@ -26,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ca-ubude.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="76">
+              <caret line="39" column="98" selection-start-line="39" selection-start-column="91" selection-end-line="39" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -72,6 +81,7 @@
       <find>os</find>
       <find>python</find>
       <find>libgo</find>
+      <find>freetype</find>
     </findStrings>
     <replaceStrings>
       <replace>\n\t</replace>
@@ -112,6 +122,7 @@
         <option value="$PROJECT_DIR$/ca-os1.py" />
         <option value="$PROJECT_DIR$/ca-ubude.py" />
         <option value="$PROJECT_DIR$/ca-orarhcentama.py" />
+        <option value="$PROJECT_DIR$/ca-custpre.py" />
       </list>
     </option>
   </component>
@@ -364,7 +375,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565023417826</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="removed duplicates from pre-reqs">
+      <created>1565036821470</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1565036821470</updated>
+    </task>
+    <task id="LOCAL-00016" summary="removed duplicates from pre-reqs">
+      <created>1565037301976</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1565037301976</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -409,6 +434,32 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed wildcard searches" />
     <MESSAGE value="fixed false positives" />
@@ -418,7 +469,8 @@
     <MESSAGE value="added older versions to os function output" />
     <MESSAGE value="fixed formatting in report" />
     <MESSAGE value="fixed ulimit thing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed ulimit thing" />
+    <MESSAGE value="removed duplicates from pre-reqs" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed duplicates from pre-reqs" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mehdis.py">
@@ -596,15 +648,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ca-ubude.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="76">
+          <caret line="39" column="98" selection-start-line="39" selection-start-column="91" selection-end-line="39" selection-end-column="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ca-orarhcentama.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+        <state relative-caret-position="193">
+          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-custpre.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
         </state>
       </provider>
     </entry>
