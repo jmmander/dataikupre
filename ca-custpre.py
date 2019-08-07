@@ -323,9 +323,7 @@ def centos():
         text = (osname + " is being used. This is not currently supported.")
         print(colour(text, "red"))
         replist.append(text)
-    # if centos in osname:
-    # elif "Centos" in osname:
-    #     sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n\n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
+
     # elif "Ubuntu" in osname:
     #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
     # elif "Debian" in osname:
