@@ -276,8 +276,10 @@ def os():
         osnamelist = os.readlines()
         for line in osnamelist:
             if "PRETTY" in line:
-                osname = re.findall("[\"].*?[\"]", line)
-                print(osname)
+                reosname = re.findall("[\"](.*?)[\"]", line)
+                osname = reosname[0]
+
+
 
     #p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #stdout = p1.communicate()
