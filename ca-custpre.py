@@ -117,7 +117,7 @@ def prebuilder():
     return prereqs
 
 def eggs():
-    return "   Checking all your eggs are in the nest...         \n  ------------------------------------------- \n"
+    return "\n\n   Checking all your eggs are in the nest...         \n  ------------------------------------------- \n"
 
 
 # checks which packages are avaiable
@@ -272,31 +272,75 @@ def python():
 #checks is OS is supported as per DSS documentation
 def os():
     print("   Checking the habitability of your environment...\n  ---------------------------------------------------\n")
-    p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout = p1.communicate()
-    stroutput = str(stdout)
-    result = re.search('PRETTY_NAME="(.*?)"', stroutput)
-    osname = (result.group(1))
-    text = (osname + " is being used")
-    replist.append((text))
+    with open ('/etc/os-release') as os:
+        osname = os.readline()
+
+    #p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #stdout = p1.communicate()
+    # stroutput = str(stdout)
+    # result = re.search('PRETTY_NAME="(.*?)"', stroutput)
+    # osname = (result.group(1))
     if "Red Hat" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n\n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT recommended for new installations."
-    elif "Centos" in osname:
-        sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n\n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
-    elif "Ubuntu" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
-    elif "Debian" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
-    elif "Orcale" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n\n  Oracle Linux 6.8 and later 6.x are NOT reccommended for new installations."
-    elif "Amazon Linux 2" in osname:
-        sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
-    elif "Amazon Linux" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
-    elif "SuSE" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
-    print("* " + text + "\n")
-    print(sup + "\n\n")
+        redhat(osname)
+    elif "CentOS" in osname:
+        centos()
+
+def redhat(osname):
+    gpattern = "7(\.[3-9])"
+    bpattern = "6(\.[8-9])"
+    good = re.findall(gpattern, osname)
+    if good:
+        text = (osname + " is being used. This is fully supported in the 64bit version only.")
+        print(colour("green",text))
+        replist.append(text)
+    bad = re.findall(bpattern, osname)
+    if bad:
+        text = (osname + " is being used. Thtextis is NOT recommended for new installations")
+        print(colour("blue", text))
+        replist.append(text)
+    if good == False and bad == False:
+        text = (osname + " is being used. This is not currently supported.")
+        print(colour(text, "red"))
+        replist.append(text)
+
+def centos():
+    with open ('/etc/centos-release') as cenrel:
+        relname = cenrel.readline()
+        osname = relname.rstrip()
+    gpattern = "7(\.[3-9])"
+    bpattern = "6(\.[8-9])"
+    good = re.findall(gpattern, osname)
+    if good:
+        text = (osname + " is being used. This is fully supported in the 64bit version only.")
+        print(colour("green", text))
+        replist.append(text)
+    bad = re.findall(bpattern, osname)
+    if bad:
+        text = (osname + " is being used. This is NOT recommended for new installations")
+        print(colour("blue", text))
+        replist.append(text)
+    if good == False and bad == False:
+        text = (osname + " is being used. This is not currently supported.")
+        print(colour(text, "red"))
+        replist.append(text)
+    # if centos in osname:
+    # elif "Centos" in osname:
+    #     sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n\n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
+    # elif "Ubuntu" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
+    # elif "Debian" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
+    # elif "Orcale" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n\n  Oracle Linux 6.8 and later 6.x are NOT reccommended for new installations."
+    # elif "Amazon Linux 2" in osname:
+    #     sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
+    # elif "Amazon Linux" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
+    # elif "SuSE" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
+    # #print("* " + text + "\n")
+    # #if sup:
+    #    # print(sup + "\n\n")
 
 
 
