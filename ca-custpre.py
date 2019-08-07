@@ -273,7 +273,11 @@ def python():
 def os():
     print("   Checking the habitability of your environment...\n  ---------------------------------------------------\n")
     with open ('/etc/os-release') as os:
-        osname = os.readline()
+        osnamelist = os.readlines()
+        for line in osnamelist:
+            if "PRETTY" in line:
+                osname = re.findall("[\"].*?[\"]", line)
+                print(osname)
 
     #p1 = subprocess.Popen(['cat', '/etc/os-release'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #stdout = p1.communicate()
@@ -295,10 +299,10 @@ def redhat(osname):
         replist.append(text)
     bad = re.findall(bpattern, osname)
     if bad:
-        text = (osname + " is being used. Thtextis is NOT recommended for new installations")
+        text = (osname + " is being used. This is NOT recommended for new installations")
         print(colour("blue", text))
         replist.append(text)
-    if good == False and bad == False:
+    if good is False and bad is False:
         text = (osname + " is being used. This is not currently supported.")
         print(colour(text, "red"))
         replist.append(text)
