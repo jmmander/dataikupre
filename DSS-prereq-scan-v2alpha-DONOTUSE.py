@@ -330,12 +330,14 @@ def centos():
         print(colour(text, "red"))
         replist.append(text)
 
+def oracle{}
+    # elif "Orcale" in osname:
+    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n\n  Oracle Linux 6.8 and later 6.x are NOT recco
     # elif "Ubuntu" in osname:
     #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
     # elif "Debian" in osname:
     #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
-    # elif "Orcale" in osname:
-    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n\n  Oracle Linux 6.8 and later 6.x are NOT reccommended for new installations."
+
     # elif "Amazon Linux 2" in osname:
     #     sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
     # elif "Amazon Linux" in osname:
