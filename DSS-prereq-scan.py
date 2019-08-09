@@ -258,7 +258,7 @@ def os():
     replist.append((text))
     if "Red Hat" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n  Red Hat Enterprise Linux Server 6.8 and later 6.x are NOT recommended for new installations."
-    elif "Centos" in osname:
+    elif "CentOS" in osname:
         sup ="  The following Linux distributions are fully supported, in 64-bit version only: \n\t CentOS, version 7.3 and later 7.x. \n  CentOS 6.8 and later 6.x are NOT reccommended for new installations."
     elif "Ubuntu" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
@@ -269,9 +269,13 @@ def os():
     elif "Amazon Linux 2" in osname:
         sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
     elif "Amazon Linux" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up o version 2018.03)"
     elif "SuSE" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
+    else:
+        sup = "The following Linux distributions are fully supported, in 64-bit version only: \n\tRed Hat Enterprise Linux Server, version 7.3 and later 7.x. \n\t CentOS, version 7.3 and later 7.x. \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS \n\tDebian, versions 8.x and 9.x \n\tOracle Linux, version 7.3 and later 7.x. \n\tAmazon Linux 2 (experimental support only) \n\tAmazon Linux, version 2017.03 and later (tested up o version 2018.03) \n\tSuSE 12 SP2 and later"
+
+
     print("* " + text)
     print(sup + "\n\n")
 
@@ -383,10 +387,14 @@ def userprocesses():
 
 # checks if en_US.utf8 locale is installed.
 def locale():
-    process = subprocess.Popen(['localectl'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-    word = "en_US.UTF-8"
+    try:
+        process = subprocess.Popen(['localectl'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+    except OSError:
+        process = subprocess.Popen(['locale'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
     # byteword = word.encode(encoding='UTF-8')
+    word = "en_US.UTF-8"
     if word in stdout:
         okay = "Nice work! You are using en_US.utf8"
         replist.append(okay)

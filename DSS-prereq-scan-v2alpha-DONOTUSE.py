@@ -290,21 +290,28 @@ def os():
         redhat(osname)
     elif "CentOS" in osname:
         centos()
+    elif "Oracle" in osname:
+        oracle(osname)
+    elif "Amazon" in osname:
+        if "Amazon Linux 2" in osname:
+            amazon2(osname)
+        else:
+            amazon(osname)
 
 def redhat(osname):
     gpattern = "7(\.[3-9])"
     bpattern = "6(\.[8-9])"
     good = re.findall(gpattern, osname)
+    bad = re.findall(bpattern, osname)
     if good:
-        text = (osname + " is being used. This is fully supported in the 64bit version only.")
+        text = (osname + " is being used. ")
         print(colour("green",text))
         replist.append(text)
-    bad = re.findall(bpattern, osname)
-    if bad:
+    elif bad:
         text = (osname + " is being used. This is NOT recommended for new installations")
         print(colour("blue", text))
         replist.append(text)
-    if good is False and bad is False:
+    else:
         text = (osname + " is being used. This is not currently supported.")
         print(colour(text, "red"))
         replist.append(text)
@@ -316,24 +323,64 @@ def centos():
     gpattern = "7(\.[3-9])"
     bpattern = "6(\.[8-9])"
     good = re.findall(gpattern, osname)
+    bad = re.findall(bpattern, osname)
     if good:
-        text = (osname + " is being used. This is fully supported in the 64bit version only.")
+        text = (osname + " is being used. ")
         print(colour("green", text))
         replist.append(text)
-    bad = re.findall(bpattern, osname)
-    if bad:
+    elif bad:
         text = (osname + " is being used. This is NOT recommended for new installations")
         print(colour("blue", text))
         replist.append(text)
-    if good == False and bad == False:
+    else:
         text = (osname + " is being used. This is not currently supported.")
         print(colour(text, "red"))
         replist.append(text)
 
-def oracle{}
-    # elif "Orcale" in osname:
-    #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tOracle Linux, version 7.3 and later 7.x. \n\n  Oracle Linux 6.8 and later 6.x are NOT recco
-    # elif "Ubuntu" in osname:
+def oracle(osname):
+    gpattern = "7(\.[3-9])"
+    bpattern = "6(\.[8-9])"
+    good = re.findall(gpattern, osname)
+    bad = re.findall(bpattern, osname)
+    if good:
+        text = (osname + " is being used. ")
+        print(colour("green",text))
+        replist.append(text)
+    elif bad:
+        text = (osname + " is being used. This is NOT recommended for new installations")
+        print(colour("blue", text))
+        replist.append(text)
+    else:
+        text = (osname + " is being used. This is not currently supported.")
+        print(colour(text, "red"))
+        replist.append(text)
+
+def amazon(osname):
+    gpattern = "2017(\.[3-9])"
+    g2pattern = "2018(\.[0-3])"
+    good = re.findall(gpattern, osname)
+    good2 = re.findall(g2pattern, osname)
+    if good:
+        text = (osname + " is being used. ")
+        print(colour("green",text))
+        replist.append(text)
+    elif good2:
+        text = (osname + " is being used. ")
+        print(colour("green",text))
+        replist.append(text)
+    else:
+        text = (osname + " is being used. This is not currently supported.")
+        print(colour(text, "red"))
+        replist.append(text)
+
+
+
+def amazon2(osname):
+    text = (osname + " is being used. This is only experimentally supported.")
+    print(colour("blue", text))
+    replist.append(text)
+
+   # elif "Ubuntu" in osname:
     #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tUbuntu Server, versions 16.04 LTS and 18.04 LTS"
     # elif "Debian" in osname:
     #     sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tDebian, versions 8.x and 9.x"
@@ -456,8 +503,12 @@ def userprocesses():
 
 # checks if en_US.utf8 locale is installed.
 def locale():
-    process = subprocess.Popen(['localectl'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
+    try:
+        process = subprocess.Popen(['localectl'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+    except OSError:
+        process = subprocess.Popen(['locale'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
     word = "en_US.UTF-8"
     # byteword = word.encode(encoding='UTF-8')
     if word in stdout:
