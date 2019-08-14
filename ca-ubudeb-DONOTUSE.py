@@ -38,12 +38,12 @@ hadoop_prereqs = ["hadoop-client", "hadoop-lzo", "spark-core", "spark-python", "
                   "hive-hcatalog", "pig", "tez", "openssl-devel", "emrfs", "emr-*"]
 
 dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "libgfortran", "libgomp",
-               "freetype", "python-devel"]
+               "freetype", "python-devel", "tomcat9-*"]
 
 conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "alsa-lib"]
 
 #list of prereqresite packages
-prereqs = dss_prereqs + hadoop_prereqs + r_prereqs + conda_prereqs
+prereqs = dss_prereqs #+ hadoop_prereqs + r_prereqs + conda_prereqs
 
 
 
@@ -303,8 +303,14 @@ def ping():
 # checks if system has Security-Enhanced Linux (SELinux) in enforcing mode
 # !!! must download selinux tools - check to see if installed first
 def selinux():
-    process = subprocess.Popen(['getenforce'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
+    try:
+        process = subprocess.Popen(['getenforce'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+    except OSError:
+        okay = "Nice work! Your nest does not have SELinux enabled"
+        replist.append(okay)
+        print(colour('green', okay))
+        return (1, 1)
     word = "Enabled"
     # byteword = word.encode(encoding='UTF-8')
     if word in stdout:
@@ -344,8 +350,8 @@ def ram():
 # Checks the hard limit on the maximum number of open files for the Unix user account running DSS
 def openfiles():
     process = subprocess.Popen(["ulimit -Hn"], shell=True, stdout=subprocess.PIPE)
-    stdout_val = process.communicate()
-    num = str(stdout_val[0])
+    stdout = process.communicate()
+    num = str(stdout[0])
     lim = re.sub("[^0-9]", "", num)
     hardlimit = int(lim)
     if hardlimit >= ulimit:
@@ -363,11 +369,19 @@ def openfiles():
 
 # Checks the hard limit on the maximum number of user processes for the Unix user account running DSS
 def userprocesses():
-    process = subprocess.Popen(["ulimit -u"], shell=True, stdout=subprocess.PIPE)
-    stdout_val = process.communicate()
-    num = str(stdout_val[0])
-    lim = re.sub("[^0-9]", "", num)
-    hardlimit = int(lim)
+    try:
+        process = subprocess.Popen(["ulimit -Hu"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout = process.communicate()[0]
+        num = str(stdout)
+        lim = re.sub("[^0-9]", "", num)
+        hardlimit = int(lim)
+    except ValueError:
+        process = subprocess.Popen(["ulimit -Hu"], executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout = process.communicate()[0]
+        num = str(stdout)
+        lim = re.sub("[^0-9]", "", num)
+        hardlimit = int(lim)
+
     if hardlimit >= ulimit:
         okay = "Nice work! Your nest can have " + str(hardlimit) + " processes running."
         replist.append(okay)
@@ -419,6 +433,7 @@ def cpucores():
 
 # calls all system related checks and returns tuple
 def nester():
+
     f = python()
     a = selinux()
     b = ram()
@@ -427,7 +442,7 @@ def nester():
     e = locale()
     g = ping()
     i = cpucores()
-    total = tuple(map(sum, zip(a, b, c, d, e, f, g, i)))
+    total = tuple(map(sum, zip(a, b,c, d, e, f, g, i)))
     nestnum = total[1] - total[0]
     return nestnum
 
