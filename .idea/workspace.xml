@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11fa05c-d210-4597-baf7-33a1d726ae43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS-prereq-scan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" beforeDir="false" afterPath="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DSS-prereq-scan.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="875">
@@ -23,11 +22,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ca-SUSE-DONOTUSE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="273" column="12" selection-start-line="273" selection-start-column="12" selection-end-line="273" selection-end-column="12" />
+            <state relative-caret-position="525">
+              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -35,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-v2alpha-DONOTUSE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6450">
+            <state relative-caret-position="3347">
               <caret line="485" selection-start-line="485" selection-end-line="500" selection-end-column="21" />
             </state>
           </provider>
@@ -44,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ca-ubudeb-DONOTUSE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="122" column="58" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
+            <state relative-caret-position="648">
+              <caret line="310" column="20" selection-start-line="308" selection-end-line="312" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -134,8 +133,8 @@
         <option value="$PROJECT_DIR$/ca-custpre.py" />
         <option value="$PROJECT_DIR$/DSS-prereq-scan-v2alpha-DONOTUSE.py" />
         <option value="$PROJECT_DIR$/ca-ubudeb-DONOTUSE.py" />
-        <option value="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" />
         <option value="$PROJECT_DIR$/DSS-prereq-scan.py" />
+        <option value="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" />
       </list>
     </option>
   </component>
@@ -523,7 +522,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565803434652</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fixed OS bug">
+      <created>1565891142229</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1565891142229</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fixed compatibility issues">
+      <created>1565892654641</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1565892654641</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -640,7 +653,9 @@
     <MESSAGE value="renamed files" />
     <MESSAGE value="fixed centOS bugs" />
     <MESSAGE value="fixed compatability bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed compatability bugs" />
+    <MESSAGE value="fixed OS bug" />
+    <MESSAGE value="fixed compatibility issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed compatibility issues" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mehdis.py" />
@@ -677,22 +692,8 @@
     <entry file="file://$PROJECT_DIR$/ca-custpre.py" />
     <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-v2alpha-DONOTUSE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6450">
+        <state relative-caret-position="3347">
           <caret line="485" selection-start-line="485" selection-end-line="500" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ca-ubudeb-DONOTUSE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="122" column="58" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ca-SUSE-DONOTUSE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="273" column="12" selection-start-line="273" selection-start-column="12" selection-end-line="273" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -700,6 +701,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="875">
           <caret line="272" column="12" selection-start-line="272" selection-start-column="12" selection-end-line="272" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-ubudeb-DONOTUSE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="310" column="20" selection-start-line="308" selection-end-line="312" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-SUSE-DONOTUSE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
         </state>
       </provider>
     </entry>

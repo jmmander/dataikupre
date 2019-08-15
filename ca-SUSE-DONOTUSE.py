@@ -43,7 +43,7 @@ dss_prereqs = ["java-1.8", "acl", "expat", "git", "zip", "unzip", "nginx", "libg
 conda_prereqs = ["bzip2", "mesa-libGL", "libSM", "libXrender", "alsa-lib"]
 
 #list of prereqresite packages
-prereqs = dss_prereqs + r_prereqs
+prereqs = dss_prereqs
 
 
 
