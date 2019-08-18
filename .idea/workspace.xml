@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11fa05c-d210-4597-baf7-33a1d726ae43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DSS-scanner-allsystems-DONOTUSE.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ortester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/combo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/notforgit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centoa-Amazon-Oracle.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,48 +17,41 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DSS-prereq-scan.py">
+        <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-SUSE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="233" column="46" lean-forward="true" selection-start-line="233" selection-start-column="46" selection-end-line="233" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-SUSE-DONOTUSE.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="30" column="42" lean-forward="true" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-v2alpha-DONOTUSE.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4131">
-              <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="165">
+              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DSS-scanner-allsystems-DONOTUSE.py">
+        <entry file="file://$PROJECT_DIR$/.idea/notforgit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+            <state relative-caret-position="277">
+              <caret line="602" column="4" lean-forward="true" selection-start-line="602" selection-start-column="4" selection-end-line="602" selection-end-column="4" />
+              <folding>
+                <element signature="e#194#203#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-ubudeb-DONOTUSE.py">
+        <entry file="file://$PROJECT_DIR$/.idea/combo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="262" column="140" lean-forward="true" selection-start-line="262" selection-start-column="124" selection-end-line="262" selection-end-column="143" />
+            <state relative-caret-position="7237">
+              <caret line="558" selection-start-line="558" selection-end-line="558" />
+              <folding>
+                <element signature="e#195#204#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -147,6 +142,8 @@
         <option value="$PROJECT_DIR$/ca-SUSE-DONOTUSE.py" />
         <option value="$PROJECT_DIR$/ortester.py" />
         <option value="$PROJECT_DIR$/DSS-scanner-allsystems-DONOTUSE.py" />
+        <option value="$PROJECT_DIR$/.idea/notforgit.py" />
+        <option value="$PROJECT_DIR$/.idea/combo.py" />
       </list>
     </option>
   </component>
@@ -183,6 +180,11 @@
             <path>
               <item name="dataiku" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/PycharmProjects/dataiku" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="dataiku" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/PycharmProjects/dataiku" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -576,7 +578,28 @@
       <option name="project" value="LOCAL" />
       <updated>1565894794071</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="updated">
+      <created>1566163456879</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1566163456879</updated>
+    </task>
+    <task id="LOCAL-00036" summary="updated name">
+      <created>1566164040282</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1566164040282</updated>
+    </task>
+    <task id="LOCAL-00037" summary="updated name">
+      <created>1566164575449</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1566164575449</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -590,14 +613,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16455697" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16455697" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49849308" visible="true" weight="0.47700533" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49849308" visible="true" weight="0.47700533" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997669" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -696,7 +718,9 @@
     <MESSAGE value="fixed OS bug" />
     <MESSAGE value="fixed compatibility issues" />
     <MESSAGE value="fixed prereq list" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed prereq list" />
+    <MESSAGE value="updated" />
+    <MESSAGE value="updated name" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated name" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mehdis.py" />
@@ -768,8 +792,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DSS-scanner-allsystems-DONOTUSE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-RH-CENTOS-ORACLE-AMAZON.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-SUSE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/combo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7237">
+          <caret line="558" selection-start-line="558" selection-end-line="558" />
+          <folding>
+            <element signature="e#195#204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/notforgit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="602" column="4" lean-forward="true" selection-start-line="602" selection-start-column="4" selection-end-line="602" selection-end-column="4" />
+          <folding>
+            <element signature="e#194#203#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
