@@ -2,7 +2,7 @@ Data Science Studio Unofficial Pre-Installation system check
 
 This script is used on a Linux environment prior to installing DSS. It will check for prerequisites and system requirements to save sysadmins time and ensure DSS can be installed smoothly.
 
-COMPATIBILITY: Script is currently compatible with the following Linux systems: Centos, Amazon Linux, Amazon Linux 2, Oracle Linux and Red Hat. Written using Python 2.7. Not yet Python 3 compatible.
+COMPATIBILITY: Script is currently compatible with the following Linux systems: Centos, Amazon Linux, Amazon Linux 2, Oracle Linux, Red Hat, Ubuntu, Debian and SUSE. Written using Python 2.7. Not yet Python 3 compatible.
 
 REFERENCES: 
 Dataiku pre-installation documentation can be found at: 
