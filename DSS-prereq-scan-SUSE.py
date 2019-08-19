@@ -2,8 +2,8 @@
 # Description: This script will check for Dataiku DSS 5.1 X pre-requisites
 # Primary developer: Jacqueline Mander
 # Primary designer: Alex Kaos
-# Date: 5/8/19
-# Version: 2.9
+# Date: 19/8/19
+# Version: 1.8
 
 
 #import rpm
