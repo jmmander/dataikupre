@@ -143,7 +143,6 @@ def wildcard(pkg, output, inav, wc_dic):
     pattern = '(?<!\\S)' + pname + '\w+'
     stringpat = str(pattern)
     result = re.findall(stringpat, output)
-    #retirns twice, need to check if in ins
     if result:
         if inav == "inst":
             for pack in result:
@@ -193,6 +192,7 @@ def echo(notin, ins, av, wc_dic):
             print(colour("green", yayay))
     for pkg in avanotin:
         soso = (pkg + " is available but not installed")
+        replist.append(soso)
         print(colour("blue", soso))
     for pack in wc_dic:
         if wc_dic[pack] == "available":

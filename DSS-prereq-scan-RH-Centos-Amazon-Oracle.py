@@ -192,6 +192,7 @@ def echo(notin, ins, av, wc_dic):
             print(colour("green", yayay))
     for pkg in avanotin:
         soso = (pkg + " is available but not installed")
+        replist.append(soso)
         print(colour("blue", soso))
     for pack in wc_dic:
         if wc_dic[pack] == "available":

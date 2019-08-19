@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11fa05c-d210-4597-baf7-33a1d726ae43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/combo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/notforgit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centoa-Amazon-Oracle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan-SUSE.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS-prereq-scan-SUSE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,42 +15,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-SUSE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/notforgit.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="602" column="4" lean-forward="true" selection-start-line="602" selection-start-column="4" selection-end-line="602" selection-end-column="4" />
-              <folding>
-                <element signature="e#194#203#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="577">
+              <caret line="194" column="28" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/combo.py">
+        <entry file="file://$PROJECT_DIR$/combo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7237">
-              <caret line="558" selection-start-line="558" selection-end-line="558" />
-              <folding>
-                <element signature="e#195#204#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="477">
+              <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="194" column="28" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="202" column="34" lean-forward="true" selection-start-line="202" selection-start-column="34" selection-end-line="202" selection-end-column="34" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -65,8 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bold</find>
-      <find>Dataiku</find>
       <find>java</find>
       <find>nomissing</find>
       <find>-</find>
@@ -95,6 +90,8 @@
       <find>centos</find>
       <find>exec</find>
       <find>stderr</find>
+      <find>replist</find>
+      <find>64</find>
     </findStrings>
     <replaceStrings>
       <replace>\n\t</replace>
@@ -144,13 +141,17 @@
         <option value="$PROJECT_DIR$/DSS-scanner-allsystems-DONOTUSE.py" />
         <option value="$PROJECT_DIR$/.idea/notforgit.py" />
         <option value="$PROJECT_DIR$/.idea/combo.py" />
+        <option value="$PROJECT_DIR$/combo.py" />
+        <option value="$PROJECT_DIR$/DSS-prereq-scan-SUSE.py" />
+        <option value="$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py" />
+        <option value="$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py" />
       </list>
     </option>
   </component>
   <component name="NamedScopeManager">
     <scope name="jacqui's default scope" pattern="file[dataiku]:*/" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1403" />
     <option name="height" value="1417" />
@@ -599,7 +600,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566164575449</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="updated name">
+      <created>1566164737415</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1566164737415</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated name">
+      <created>1566231231223</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1566231231223</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -612,21 +627,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="0" y="23" width="1403" height="1417" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16455697" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19753979" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49849308" visible="true" weight="0.47700533" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49855283" visible="true" weight="0.33660376" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997669" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4996986" weight="0.32983682" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49603173" weight="0.10867924" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32983682" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015069" side_tool="true" visible="true" weight="0.47700533" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014472" side_tool="true" visible="true" weight="0.33660376" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32983682" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -797,9 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-RH-CENTOS-ORACLE-AMAZON.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -807,30 +820,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-SUSE.py">
+    <entry file="file://$PROJECT_DIR$/.idea/notforgit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        <state relative-caret-position="215">
+          <caret line="383" column="79" selection-start-line="383" selection-start-column="77" selection-end-line="383" selection-end-column="79" />
+          <folding>
+            <element signature="e#194#203#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/combo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7237">
-          <caret line="558" selection-start-line="558" selection-end-line="558" />
-          <folding>
-            <element signature="e#195#204#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-269">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/notforgit.py">
+    <entry file="file://$PROJECT_DIR$/combo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="602" column="4" lean-forward="true" selection-start-line="602" selection-start-column="4" selection-end-line="602" selection-end-column="4" />
-          <folding>
-            <element signature="e#194#203#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="477">
+          <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-Ubuntu-Debian.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="202" column="34" lean-forward="true" selection-start-line="202" selection-start-column="34" selection-end-line="202" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-RH-Centos-Amazon-Oracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="194" column="28" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DSS-prereq-scan-SUSE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="194" column="28" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
         </state>
       </provider>
     </entry>
