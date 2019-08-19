@@ -269,7 +269,7 @@ def os():
     elif "Amazon Linux 2" in osname:
         sup = "  The following Linux distributions are supported, in 64-bit version only: \n\tAmazon Linux 2 (experimental support only)"
     elif "Amazon Linux" in osname:
-        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up o version 2018.03)"
+        sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tAmazon Linux, version 2017.03 and later (tested up to version 2018.03)"
     elif "SUSE" in osname:
         sup = "  The following Linux distributions are fully supported, in 64-bit version only: \n\tSuSE 12 SP2 and later"
     else:
