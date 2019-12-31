@@ -1,9 +1,9 @@
 #!/usr/bin/python
-# Description: This script will check for Dataiku DSS 5.1 X pre-requisites
+# Description: This script will check for Dataiku DSS 6.0 pre-requisites
 # Primary developer: Jacqueline Mander
 # Primary designer: Alex Kaos
-# Date: 19/8/19
-# Version: 2.0
+# Date: 12/31/19
+# Version: 3.0
 
 
 
