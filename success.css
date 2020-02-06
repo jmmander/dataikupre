@@ -1,0 +1,35 @@
+body {
+  color: #28b1ab;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10%;
+  margin: 0;
+  font-size: 2em;
+  display: block;
+  text-align: center;
+    }
+
+
+#new_logo {
+    background: url('bwbird.jpg') no-repeat 0 0;
+    background-size: 800px 1200px;
+    width: 800px;
+    height: 300px;
+    background-repeat:no-repeat;
+    background-position: center 0;
+    margin: -5%;
+    margin-left: 19%;
+    
+}
+#new_logo.animation {
+    background-position: 0 0;
+    -webkit-animation: play 0.8s steps(3, start);
+            animation: play 0.8s steps(3, start);
+} 
+@-webkit-keyframes play {
+    from {background-position: 0 0px;}
+    to {background-position: 0 -900px;}
+} 
+@keyframes play {
+    from {background-position: 0 0px;}
+    to {background-position: 0 -900px;}
+}
