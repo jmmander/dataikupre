@@ -407,14 +407,14 @@ def ping():
 # checks if system has Security-Enhanced Linux (SELinux) in enforcing mode
 def selinux():
     try:
-        process = subprocess.Popen(['getenforce'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(['sestatus'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
     except OSError:
         okay = "Nice work! Your nest does not have SELinux enabled"
         replist.append(okay)
         print((colour('green', okay)))
         return (1, 1)
-    word = "Enabled"
+    word = "enabled"
     if pyversion == 3:
         word = word.encode(encoding='UTF-8')
     if word in stdout:
