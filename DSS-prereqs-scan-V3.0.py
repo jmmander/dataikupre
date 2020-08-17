@@ -1,10 +1,9 @@
-#!/usr/bin/python
-# Description: This script will check for Dataiku DSS 6.0 pre-requisites
+# !/usr/bin/python
+# Description: This script will check for Dataiku DSS pre-requisites
 # Primary developer: Jacqueline Mander
 # Primary designer: Alex Kaos
-# Date: 12/31/19
-# Version: 3.0
-
+# Date: 8/17/20
+# Version: 3.1
 
 
 from os import geteuid
@@ -162,34 +161,34 @@ def os():
                 reosname = re.findall("[\"](.*?)[\"]", line)
                 osname = reosname[0]
     if "Red Hat" in osname:
-        gpattern = "7(\.[3-9])"
+        gpattern = "7(\.[3-9])|8(\.[0-9])"
         bpattern = "6(\.[8-9])"
         osprinter(osname, gpattern, bpattern)
     elif "CentOS" in osname:
         with open('/etc/centos-release') as cenrel:
             relname = cenrel.readline()
             osname = relname.rstrip()
-            gpattern = "7(\.[3-9])"
+            gpattern = "7(\.[3-9])|8(\.[0-9])"
             bpattern = "6(\.[8-9])"
             osprinter(osname, gpattern, bpattern)
             return osname
     elif "Oracle" in osname:
-        gpattern = "7(\.[3-9])"
+        gpattern = "7(\.[3-9])|8(\.[0-9])"
         bpattern = "6(\.[8-9])"
         osprinter(osname, gpattern, bpattern)
     elif "Amazon" in osname:
         if "Amazon Linux 2" in osname:
-            text = (osname + " is being used. This is only experimentally supported.")
+            text = (osname + " is being used. Support of Amazon Linux 2 is covered by Tier 2 support.")
             replist.append(text)
             print((colour("blue", text)))
         else:
             gpattern = "2017(\.[3-9])|2018(\.[0-3])"
             osprinter(osname, gpattern)
     elif "Debian" in osname:
-            gpattern = "8(\.[0-9])|9(\.[0-9])|8|9"
+            gpattern = "9(\.[0-9])|10(\.[0-9])|9|10"
             osprinter(osname, gpattern)
     elif "Ubuntu" in osname:
-        gpattern = "16.04|18.04"
+        gpattern = "16.04|18.04|20.04"
         osprinter(osname, gpattern)
     elif "SUSE" in osname:
         gpattern = "1[2-9]"
