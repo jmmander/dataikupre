@@ -438,7 +438,7 @@ def ram():
         gb = round((num / (1024 * 1024)), 2)
         okay = "Your nest is nice and roomy, you have " + str(gb) + "GB" + " of RAM"
         nokay = "Uh oh! Your nest is a little small, you only have " + str(gb) + "GB" + " of RAM "
-        if gb < 16:
+        if gb < 14:
             replist.append(nokay)
             print((colour('red', nokay)))
             return (0, 1)
