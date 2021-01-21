@@ -7,7 +7,7 @@ This script is used on a Linux environment prior to installing DSS. It will chec
 COMPATIBILITY: Script is currently compatible with the following Linux systems: Centos, Amazon Linux, Amazon Linux 2, Oracle Linux, Red Hat, Ubuntu, Debian and SUSE. Compatible with Python 2 and 3.
 
 REFERENCES: 
-Dataiku pre-installation documentation can be found at: 
+DSS pre-installation documentation can be found at: 
 https://doc.dataiku.com/dss/latest/installation/requirements.html 
 https://doc.dataiku.com/dss/latest/installation/new_instance.html
 
